@@ -20,7 +20,7 @@ const AllOrders = () => {
   const fetchOrders = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/order/get-all-orders",
+        "https://book-store-database.onrender.com/order/get-all-orders",
         { headers }
       );
       console.log(response.data.data.splice(0, 5));
@@ -45,7 +45,7 @@ const AllOrders = () => {
     setUpdating(true);
     try {
       const response = await axios.put(
-        `http://localhost:5000/order/update-status/${orderId}`,
+        `https://book-store-database.onrender.com/order/update-status/${orderId}`,
         { status: newStatus },
         { headers }
       );

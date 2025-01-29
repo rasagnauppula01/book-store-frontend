@@ -40,7 +40,7 @@ const Favourites = () => {
   const handleBookRemove = async (bookId) => {
     try {
       const response = await axios.delete(
-        "http://localhost:5000/favourites/remove-book-from-favourite",
+        "https://book-store-database.onrender.com/favourites/remove-book-from-favourite",
         {
           headers: {
             ...headers,

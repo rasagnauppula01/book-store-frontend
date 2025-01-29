@@ -20,7 +20,7 @@ const ViewBookDetails = () => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:5000/book/get-book/${id}`
+        `https://book-store-database.onrender.com/book/get-book/${id}`
       )
       .then((res) => {
         setBook(res.data.book);
@@ -45,7 +45,7 @@ const ViewBookDetails = () => {
   const handleEditSubmit = async () => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/book/update-books/${id}`,
+        `https://book-store-database.onrender.com/book/update-books/${id}`,
         editedBook,
         { headers }
       );
@@ -71,7 +71,7 @@ const ViewBookDetails = () => {
 
     try {
       const response = await axios.delete(
-        `http://localhost:5000/book/delete-books/${id}`,
+        `https://book-store-database.onrender.com/book/delete-books/${id}`,
         { headers }
       );
       if (response.status === 200) {
@@ -97,19 +97,26 @@ const ViewBookDetails = () => {
   const handleAddToFavorites = async () => {
     try {
       const response = await axios.put(
-        "http://localhost:5000/favourites/add-to-favourite",
+        "https://book-store-database.onrender.com/favourites/add-to-favourite",
         { bookId: id },
         { headers }
       );
+      console.log(response)
       if (response.status === 200) {
         toast.success("Added to favorites!", {
           position: "top-center",
           autoClose: 3000,
         });
       }
+      else{
+        toast.error("Already to favorites!", {
+          position: "top-center",
+          autoClose: 3000,
+        });
+      }
     } catch (error) {
-      console.error("Error adding to favorites:", error);
-      toast.error("Failed to add to favorites.", {
+      console.error("Error adding to favorites:", error.response.data.success);
+      toast.error(error.response.data.message, {
         position: "top-center",
         autoClose: 3000,
       });
@@ -119,7 +126,7 @@ const ViewBookDetails = () => {
   const handleAddToCart = async () => {
     try {
       const response = await axios.put(
-        "http://localhost:5000/Cart/add-to-cart",
+        "https://book-store-database.onrender.com/Cart/add-to-cart",
         { bookId: id },
         { headers }
       );

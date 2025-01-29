@@ -36,7 +36,7 @@ const Navbar = () => {
           src="https://img.pikbest.com/png-images/20241016/detailed-book-logo-vector-art_10968776.png!bw700"
           alt="Bookify Logo"
         />
-        <h1 className="text-3xl font-bold font-serif text-gray-800 text-cyan-50 hover:text-blue-600 transition-all duration-300">
+        <h1 className="text-3xl font-bold font-serif text-cyan-50 hover:text-blue-600 transition-all duration-300">
           Bookify
         </h1>
       </Link>

@@ -18,7 +18,7 @@ const ResetPassword = () => {
 
     try {
       const response = await axios.put(
-        "http://localhost:5000/verify-otp",
+        "hhttps://book-store-database.onrender.com/verify-otp",
         {
           email,
           otp,

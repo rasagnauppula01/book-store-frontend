@@ -4,44 +4,42 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const AddBook = () => {
-  const [form, setForm] = useState({
-    title: "",
-    author: "",
-    price: "",
-    desc: "",
-    language: "",
-    file: null,
-  });
+  // const [form, setForm] = useState({
+  //   title: "",
+  //   author: "",
+  //   price: "",
+  //   desc: "",
+  //   language: "",
+  //   file: null,
+  // });
 
   const headers = {
     id: localStorage.getItem("id"),
     authorization: `Bearer ${localStorage.getItem("token")}`,
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
-  };
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setForm({ ...form, [name]: value });
+  // };
 
-  const handleFileChange = (e) => {
-    setForm({ ...form, file: e.target.files[0] });
-  };
+  // const handleFileChange = (e) => {
+  //   setForm({ ...form, file: e.target.files[0] });
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    for (const key in form) {
-      formData.append(key, form[key]);
-    }
+    const formData = new FormData(e.target);
+    // for (const key in form) {
+    //   formData.append(key, form[key]);
+    // }
+
 
     try {
-      await axios.post(
-        "http://localhost:5000/book/add-books",
-        formData,
-        {
-          headers,
-        }
-      );
+      await fetch("https://book-store-database.onrender.com/book/add-books", {
+        method: "POST",
+        body: formData
+      })
       toast.success("Book added successfully", {
         position: "top-center",
         autoClose: 3000,
@@ -51,14 +49,14 @@ const AddBook = () => {
         draggable: true,
         progress: undefined,
       });
-      setForm({
-        title: "",
-        author: "",
-        price: "",
-        desc: "",
-        language: "",
-        file: null,
-      });
+      // setForm({
+      //   title: "",
+      //   author: "",
+      //   price: "",
+      //   desc: "",
+      //   language: "",
+      //   file: null,
+      // });
     } catch (error) {
       console.error("Error adding book:", error);
       toast.error("Failed to add book", {
@@ -77,7 +75,7 @@ const AddBook = () => {
     <div className="container mx-auto p-4">
       <ToastContainer />
       <h1 className="text-3xl font-bold mb-8 text-center">Add New Book</h1>
-      <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-6">
+      <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-6" encType="multipart/form-data">
         <div>
           <label className="block text-sm font-medium text-gray-700">
             Title
@@ -85,8 +83,8 @@ const AddBook = () => {
           <input
             type="text"
             name="title"
-            value={form.title}
-            onChange={handleChange}
+            // value={form.title}
+            // onChange={handleChange}
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             required
           />
@@ -98,8 +96,8 @@ const AddBook = () => {
           <input
             type="text"
             name="author"
-            value={form.author}
-            onChange={handleChange}
+            // value={form.author}
+            // onChange={handleChange}
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             required
           />
@@ -111,8 +109,8 @@ const AddBook = () => {
           <input
             type="number"
             name="price"
-            value={form.price}
-            onChange={handleChange}
+            // value={form.price}
+            // onChange={handleChange}
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             required
           />
@@ -123,8 +121,8 @@ const AddBook = () => {
           </label>
           <textarea
             name="desc"
-            value={form.desc}
-            onChange={handleChange}
+            // value={form.desc}
+            // onChange={handleChange}
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             required
           ></textarea>
@@ -136,8 +134,8 @@ const AddBook = () => {
           <input
             type="text"
             name="language"
-            value={form.language}
-            onChange={handleChange}
+            // value={form.language}
+            // onChange={handleChange}
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             required
           />
@@ -149,7 +147,7 @@ const AddBook = () => {
           <input
             type="file"
             name="file"
-            onChange={handleFileChange}
+            // onChange={handleFileChange}
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             required
           />

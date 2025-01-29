@@ -14,7 +14,7 @@ const ForgotPassword = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:5000/request-otp",
+        "https://book-store-database.onrender.com/request-otp",
         {
           email,
         }
