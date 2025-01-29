@@ -81,7 +81,7 @@ const Hero = () => {
           ref={ref} // Assign the ref to the image for lazy loading
           src={
             inView
-              ? "https://files.oaiusercontent.com/file-4LGjBB31P8hjo8a7Ei7fiQ?se=2025-01-27T12%3A10%3A13Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D38017670-5879-4c91-87c1-fd10797ac35f.webp&sig=E96MEubtLQdR1EEV5nlmrzyxpScUwVuNdugAJgZVM4Y%3D"
+              ? "https://zolostays.com/blog/wp-content/uploads/2024/02/books-stores.jpg"
               : ""
           }
           alt="Books"
